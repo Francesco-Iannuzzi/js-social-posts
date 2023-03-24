@@ -140,18 +140,19 @@ function createMarkupArrayObject(array) {
             </div>            
         </div>
         `
-        const likes = singleArrayElement.likes
-        console.log(singleArrayElement.likes);
         
         //stampare nell'elemento selezionato il markup
         divElement.innerHTML += markupPost
+        const likes = singleArrayElement.likes
+        console.log(singleArrayElement.likes);
+
         return likes
     });
 }
 
 //invoco la funzione utilizzando l'array dei post
-const likes = createMarkupArrayObject(posts);
-console.log(likes);
+createMarkupArrayObject(posts);
+
 
 //selezionare i link Mi piace
 const likeButtonArray = document.querySelectorAll('.js-like-button')
