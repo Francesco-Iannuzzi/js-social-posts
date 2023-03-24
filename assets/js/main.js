@@ -93,58 +93,82 @@ const posts = [
 const divElement = document.getElementById('container');
 //console.log(divElement);
 
-//creare un forEach per ciclare nell'array
-posts.forEach(singlePost => {
-
-    //controllare se il valore della proprietà dell'immagine del profilo è null
-    if (singlePost.author.image === null) {
-        //salvare nella proprietà dell'oggetto una stringa contente le iniziali del suo nome
-        singlePost.author.image = `<h2>${singlePost.author.name.charAt(0) + singlePost.author.name.charAt(5)}</h2>`
-
-    } else{
-        singlePost.author.image = `<img class="profile-pic" src="${singlePost.author.image}" alt="Phil Mangione"></img>`
-    }
-
-    //creare una costante contenente il markup da inserire dinamicamente
-    const markupPost = `
-    <div class="post">
-        <div class="post__header">
-            <div class="post-meta">                    
-                <div class="post-meta__icon">
-                    ${singlePost.author.image}               
-                </div>
-                <div class="post-meta__data">
-                    <div class="post-meta__author">${singlePost.author.name}</div>
-                    <div class="post-meta__time">${singlePost.created}</div>
-                </div>                    
-            </div>
-        </div>
-        <div class="post__text">${singlePost.content}</div>
-        <div class="post__image">
-            <img src="${singlePost.media}" alt="post_image">
-        </div>
-        <div class="post__footer">
-            <div class="likes js-likes">
-                <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="1">
-                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                        <span class="like-button__label">Mi Piace</span>
-                    </a>
-                </div>
-                <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">${singlePost.likes}</b> persone
-                </div>
-            </div> 
-        </div>            
-    </div>
-    `
+//creare una funzione per ciclare in un array e stampare nel markup
+function createMarkupArrayObject(array) {
+    //creare un forEach per ciclare nell'array
+    array.forEach(singleArrayElement => {
     
-    //stampare nell'elemento selezionato il markup
-    divElement.innerHTML += markupPost
-});
+        //controllare se il valore della proprietà dell'immagine del profilo è null
+        if (singleArrayElement.author.image === null) {
+            //salvare nella proprietà dell'oggetto una stringa contente le iniziali del suo nome
+            singleArrayElement.author.image = `<h2>${singleArrayElement.author.name.charAt(0) + singleArrayElement.author.name.charAt(5)}</h2>`
+    
+        } else{
+            singleArrayElement.author.image = `<img class="profile-pic" src="${singleArrayElement.author.image}" alt="Phil Mangione"></img>`
+        }
+    
+        //creare una costante contenente il markup da inserire dinamicamente
+        const markupPost = `
+        <div class="post">
+            <div class="post__header">
+                <div class="post-meta">                    
+                    <div class="post-meta__icon">
+                        ${singleArrayElement.author.image}               
+                    </div>
+                    <div class="post-meta__data">
+                        <div class="post-meta__author">${singleArrayElement.author.name}</div>
+                        <div class="post-meta__time">${singleArrayElement.created}</div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="post__text">${singleArrayElement.content}</div>
+            <div class="post__image">
+                <img src="${singleArrayElement.media}" alt="post_image">
+            </div>
+            <div class="post__footer">
+                <div class="likes js-likes">
+                    <div class="likes__cta">
+                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                            <span class="like-button__label">Mi Piace</span>
+                        </a>
+                    </div>
+                    <div class="likes__counter">
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${singleArrayElement.likes}</b> persone
+                    </div>
+                </div> 
+            </div>            
+        </div>
+        `
+        const likes = singleArrayElement.likes
+        console.log(singleArrayElement.likes);
+        
+        //stampare nell'elemento selezionato il markup
+        divElement.innerHTML += markupPost
+        return likes
+    });
+}
+
+//invoco la funzione utilizzando l'array dei post
+const likes = createMarkupArrayObject(posts);
+console.log(likes);
 
 //selezionare i link Mi piace
-const likeButtonEl = document.querySelector('.js-like-button')
-likeButtonEl.addEventListener('click', function(){
-    console.log('check like');
-})
+const likeButtonArray = document.querySelectorAll('.js-like-button')
+//console.log(likeButtonArray);
+
+//creare un forEach per ciclare nei vari link selezionati
+likeButtonArray.forEach(likeButton => {
+
+    //generare un addEventListener ai link
+    likeButton.addEventListener('click', function (e) {
+        console.log('check click');
+
+        //prevenire il refresh della pagina
+        e.preventDefault();
+
+        //aggiungere o togliere la classe del like cliccato
+        likeButton.classList.toggle('like-button--liked');
+        
+    })
+} )
