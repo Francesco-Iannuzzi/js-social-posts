@@ -169,19 +169,43 @@ likeButtonArray.forEach((likeButton, i) => {
     //generare un addEventListener ai link
     likeButton.addEventListener('click', function (e) {
         //console.log('check click');
-        
+
         //prevenire il refresh della pagina
         e.preventDefault();
 
-        //incrementare il valore dei like
-        singlePost.likes++
-        //console.log(singlePost.likes);
+        //definire una variabile con valore boolean per verificare se il pulsante è stato cliccato o meno
+        let isClicked = false
 
-        //stampare il nuovo valore del like
-        likeElement[i].innerHTML = singlePost.likes
+        //se non è stato cliccato aumentiamo il valore del like e stampiamo il nuovo valore in pagina
+        if (isClicked === false) {
+            //incrementare il valore dei like
+            singlePost.likes += 1
+            //console.log(singlePost.likes);
 
-        //aggiungere o togliere la classe del like cliccato
-        likeButton.classList.toggle('like-button--liked');
-        
+            //stampare il nuovo valore del like
+            likeElement[i].innerHTML = singlePost.likes
+
+            //aggiungere o togliere la classe del like cliccato
+            likeButton.classList.toggle('like-button--liked');
+
+            //cambiamo il valore booleano dopo il click
+            isClicked = true
+
+            //altrimenti diminuiamo il valore del like e stampiamo il nuovo valore in pagina
+        } else {
+            //incrementare il valore dei like
+            singlePost.likes -= 1
+            //console.log(singlePost.likes);
+
+            //stampare il nuovo valore del like
+            likeElement[i].innerHTML = singlePost.likes
+
+            //aggiungere o togliere la classe del like cliccato
+            likeButton.classList.toggle('like-button--liked');
+
+            //cambiamo il valore booleano dopo il click
+            isClicked = false
+        }
+
     })
 });
