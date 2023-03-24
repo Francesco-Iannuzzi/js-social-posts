@@ -160,23 +160,22 @@ likeButtonArray.forEach((likeButton, i) => {
 
     //selezionare i singoli oggetti dell'array
     const singlePost = posts[i]
-    console.log(singlePost.likes);
+    //console.log(singlePost.likes);
 
     //selezionare l'elemento in dom in cui stampare l'incremento dei like
     const likeElement = document.querySelectorAll('.likes__counter > b');
-    console.log(likeElement);
-
+    //console.log(likeElement);
 
     //generare un addEventListener ai link
     likeButton.addEventListener('click', function (e) {
-        console.log('check click');
+        //console.log('check click');
         
         //prevenire il refresh della pagina
         e.preventDefault();
 
         //incrementare il valore dei like
         singlePost.likes++
-        console.log(singlePost.likes);
+        //console.log(singlePost.likes);
 
         //stampare il nuovo valore del like
         likeElement[i].innerHTML = singlePost.likes
