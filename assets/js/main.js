@@ -21,6 +21,12 @@ Non è necessario creare date casuali Per le immagini va bene utilizzare qualsia
 Milestone 2
 Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
 
+BONUS
+- Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+- Formattare le date in formato italiano (gg/mm/aaaa)
+- Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola > LF).
+Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
+
 */
 
 //creare l'array contenente i dati da stampare in pagina
@@ -133,10 +139,6 @@ posts.forEach(singlePost => {
     </div>
     `
     
-    //usare il log per verificare che elementi si selezionano
-    console.log(singlePost.author.name);
     //stampare nell'elemento selezionato il markup
     divElement.innerHTML += markupPost
 });
-
-
