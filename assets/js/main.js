@@ -142,3 +142,9 @@ posts.forEach(singlePost => {
     //stampare nell'elemento selezionato il markup
     divElement.innerHTML += markupPost
 });
+
+//selezionare i link Mi piace
+const likeButtonEl = document.querySelector('.js-like-button')
+likeButtonEl.addEventListener('click', function(){
+    console.log('check like');
+})
