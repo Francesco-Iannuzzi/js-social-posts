@@ -40,7 +40,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=15"
         },
         "likes": 80,
-        "created": "2021-06-25"
+        "created": "06-25-2021"
     },
     {
         "id": 2,
@@ -51,7 +51,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=10"
         },
         "likes": 120,
-        "created": "2021-09-03"
+        "created": "09-03-2021"
     },
     {
         "id": 3,
@@ -62,7 +62,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=20"
         },
         "likes": 78,
-        "created": "2021-05-15"
+        "created": "05-15-2021"
     },
     {
         "id": 4,
@@ -73,7 +73,7 @@ const posts = [
             "image": null
         },
         "likes": 56,
-        "created": "2021-04-03"
+        "created": "04-03-2021"
     },
     {
         "id": 5,
@@ -84,7 +84,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=29"
         },
         "likes": 95,
-        "created": "2021-03-05"
+        "created": "03-05-2021"
     }
 ];
 //console.log(posts.length);
@@ -97,16 +97,16 @@ const divElement = document.getElementById('container');
 function createMarkupArrayObject(array) {
     //creare un forEach per ciclare nell'array
     array.forEach(singleArrayElement => {
-    
+
         //controllare se il valore della proprietà dell'immagine del profilo è null
         if (singleArrayElement.author.image === null) {
             //salvare nella proprietà dell'oggetto una stringa contente le iniziali del suo nome
             singleArrayElement.author.image = `<h2>${singleArrayElement.author.name.charAt(0) + singleArrayElement.author.name.charAt(5)}</h2>`
-    
-        } else{
+
+        } else {
             singleArrayElement.author.image = `<img class="profile-pic" src="${singleArrayElement.author.image}" alt="Phil Mangione"></img>`
         }
-    
+
         //creare una costante contenente il markup da inserire dinamicamente
         const markupPost = `
         <div class="post">
@@ -140,13 +140,10 @@ function createMarkupArrayObject(array) {
             </div>            
         </div>
         `
-        
+
         //stampare nell'elemento selezionato il markup
         divElement.innerHTML += markupPost
-        const likes = singleArrayElement.likes
-        console.log(singleArrayElement.likes);
 
-        return likes
     });
 }
 
@@ -164,12 +161,16 @@ likeButtonArray.forEach(likeButton => {
     //generare un addEventListener ai link
     likeButton.addEventListener('click', function (e) {
         console.log('check click');
-
+        
         //prevenire il refresh della pagina
         e.preventDefault();
-
+        
         //aggiungere o togliere la classe del like cliccato
         likeButton.classList.toggle('like-button--liked');
         
     })
-} )
+});
+
+//destrutturare l'array per recuperare la proprietà likes
+const [user1, user2, user3, user4, user5] = posts
+console.log(user1.likes, user2.likes, user3.likes, user4.likes, user5.likes,);
