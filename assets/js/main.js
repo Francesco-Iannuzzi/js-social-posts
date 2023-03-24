@@ -90,13 +90,22 @@ const divElement = document.getElementById('container');
 //creare un forEach per ciclare nell'array
 posts.forEach(singlePost => {
 
+    //controllare se il valore della proprietà dell'immagine del profilo è null
+    if (singlePost.author.image === null) {
+        //salvare nella proprietà dell'oggetto una stringa contente le iniziali del suo nome
+        singlePost.author.image = `<h2>${singlePost.author.name.charAt(0) + singlePost.author.name.charAt(5)}</h2>`
+
+    } else{
+        singlePost.author.image = `<img class="profile-pic" src="${singlePost.author.image}" alt="Phil Mangione"></img>`
+    }
+
     //creare una costante contenente il markup da inserire dinamicamente
     const markupPost = `
     <div class="post">
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${singlePost.author.image}" alt="${singlePost.author.name}">                 
+                    ${singlePost.author.image}               
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${singlePost.author.name}</div>
@@ -125,7 +134,7 @@ posts.forEach(singlePost => {
     `
     
     //usare il log per verificare che elementi si selezionano
-    console.log();
+    console.log(singlePost.author.name);
     //stampare nell'elemento selezionato il markup
     divElement.innerHTML += markupPost
 });
