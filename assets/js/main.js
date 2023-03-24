@@ -156,7 +156,15 @@ const likeButtonArray = document.querySelectorAll('.js-like-button')
 //console.log(likeButtonArray);
 
 //creare un forEach per ciclare nei vari link selezionati
-likeButtonArray.forEach(likeButton => {
+likeButtonArray.forEach((likeButton, i) => {
+
+    //selezionare i singoli oggetti dell'array
+    const singlePost = posts[i]
+    console.log(singlePost.likes);
+
+    //selezionare l'elemento in dom in cui stampare l'incremento dei like
+    const likeElement = document.querySelector('.likes__counter > b');
+    console.log(likeElement);
 
     //generare un addEventListener ai link
     likeButton.addEventListener('click', function (e) {
@@ -164,13 +172,16 @@ likeButtonArray.forEach(likeButton => {
         
         //prevenire il refresh della pagina
         e.preventDefault();
-        
+
+        //incrementare il valore dei like
+        singlePost.likes++
+        console.log(singlePost.likes);
+
+        //stampare il nuovo valore del like
+        likeElement.innerHTML = singlePost.likes
+
         //aggiungere o togliere la classe del like cliccato
         likeButton.classList.toggle('like-button--liked');
         
     })
 });
-
-//destrutturare l'array per recuperare la proprietà likes
-const [user1, user2, user3, user4, user5] = posts
-console.log(user1.likes, user2.likes, user3.likes, user4.likes, user5.likes,);
